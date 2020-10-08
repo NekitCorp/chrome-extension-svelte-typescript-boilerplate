@@ -1,0 +1,1 @@
+# chrome-extension-svelte-typescript-boilerplate
