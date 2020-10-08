@@ -1,0 +1,26 @@
+{
+    "name": "chrome-extension-svelte-typescript-boilerplate",
+    "description": "chrome-extension-svelte-typescript-boilerplate",
+    "version": "1.0",
+    "manifest_version": 2,
+    "icons": {
+        "16": "icons/icon16.png",
+        "48": "icons/icon48.png",
+        "128": "icons/icon128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["build/content_script.js"]
+        }
+    ],
+    "background": {
+        "scripts": ["build/background.js"],
+        "persistent": false
+    },
+    "options_ui": {
+        "page": "options.html",
+        "chrome_style": true
+    },
+    "permissions": ["storage"]
+}
