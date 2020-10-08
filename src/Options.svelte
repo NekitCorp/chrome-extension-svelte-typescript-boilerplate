@@ -2,7 +2,7 @@
     import type { IStorage } from "./types";
 
     export let count: number;
-    let success = false;
+    let successMessage: string = null;
 
     function increment() {
         count += 1;
@@ -18,33 +18,47 @@
         };
 
         chrome.storage.sync.set(storage, () => {
-            success = true;
+            successMessage = "Options saved!";
 
             setTimeout(() => {
-                success = false;
+                successMessage = null;
             }, 1500);
         });
     }
 </script>
 
 <style>
-    button {
-        background: transparent;
-        border: 1px solid blue;
-        cursor: pointer;
+    .container {
+        min-width: 250px;
     }
 
-    button:hover {
-        background-color: #eee;
+    button {
+        border-radius: 2px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+        background-color: #2ecc71;
+        color: #ecf0f1;
+        transition: background-color 0.3s;
+        padding: 5px 10px;
+        border: none;
+    }
+
+    button:hover,
+    button:focus {
+        background-color: #27ae60;
+    }
+
+    .success {
+        color: #2ecc71;
+        font-weight: bold;
     }
 </style>
 
-<main>
-    <button on:click={decrement}> - </button>
-    <div>Current count {count}!</div>
-    <button on:click={increment}> + </button>
-    <button on:click={save}>Save</button>
-    {#if success}
-        <div>Options saved!</div>
-    {/if}
-</main>
+<div class="container">
+    <p>Current count: <b>{count}</b></p>
+    <div>
+        <button on:click={decrement}>-</button>
+        <button on:click={increment}>+</button>
+        <button on:click={save}>Save</button>
+        {#if successMessage}<span class="success">{successMessage}</span>{/if}
+    </div>
+</div>
