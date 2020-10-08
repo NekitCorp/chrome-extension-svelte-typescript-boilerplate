@@ -1,6 +1,6 @@
 {
-    "name": "chrome-extension-svelte-typescript-boilerplate",
-    "description": "chrome-extension-svelte-typescript-boilerplate",
+    "name": "Svelte Typescript Chrome Extension Boilerplate",
+    "description": "Boilerplate for Chrome Extension Svelte Typescript project",
     "version": "1.0",
     "manifest_version": 2,
     "icons": {
