@@ -1,32 +1,28 @@
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
-import del from "rollup-plugin-delete";
 import svelte from "rollup-plugin-svelte";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 
 const production = !process.env.ROLLUP_WATCH;
 
-function createConfig(filename, { sveltePlugin, clear }) {
+function createConfig(filename, useSvelte = false) {
     return {
         input: `src/${filename}.ts`,
         output: {
-            sourcemap: !production,
             format: "iife",
             file: `public/build/${filename}.js`,
         },
         plugins: [
-            clear && del({ targets: "public/build/*" }),
-
-            sveltePlugin &&
+            useSvelte &&
                 svelte({
                     // enable run-time checks when not in production
                     dev: !production,
                     // we'll extract any component CSS out into
                     // a separate file - better for performance
                     css: css => {
-                        css.write(`${filename}.css`, !production);
+                        css.write(`${filename}.css`, false);
                     },
                     preprocess: sveltePreprocess(),
                 }),
@@ -41,10 +37,7 @@ function createConfig(filename, { sveltePlugin, clear }) {
                 dedupe: ["svelte"],
             }),
             commonjs(),
-            typescript({
-                sourceMap: !production,
-                inlineSources: !production,
-            }),
+            typescript(),
 
             // If we're building for production (npm run build
             // instead of npm run dev), minify
@@ -57,8 +50,8 @@ function createConfig(filename, { sveltePlugin, clear }) {
 }
 
 export default [
-    createConfig("options", { sveltePlugin: true, clear: true }),
-    createConfig("popup", { sveltePlugin: true, clear: false }),
-    createConfig("background", { sveltePlugin: false, clear: false }),
-    createConfig("content_script", { sveltePlugin: false, clear: false }),
+    createConfig("options", true),
+    createConfig("popup", true),
+    createConfig("background"),
+    createConfig("content_script"),
 ];
