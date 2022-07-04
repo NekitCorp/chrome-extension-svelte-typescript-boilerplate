@@ -1,19 +1,29 @@
 # Svelte Typescript Chrome Extension Boilerplate
 
-> Boilerplate for Chrome Extension Svelte Typescript project
+Boilerplate for Chrome Extension Svelte Typescript project
+
+## Features
+
+-   [Svelte](https://svelte.dev/)
+-   [TypeScript](https://www.typescriptlang.org/)
+-   [Vite](https://vitejs.dev/)
+-   [Chrome Extensions Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/)
 
 ## Development
 
 ```bash
-# build files to './public/build'
-# rollup.watch rebuilds your bundle when it detects changes
+# install dependencies
+npm i
+
+# build files to `/dist` folder
+# vite.build.watch rebuilds when modules have changed on disk
 npm run dev
 ```
 
 ## Build
 
 ```bash
-# build files to './public/build'
+# build files to `/dist` folder
 $ npm run build
 ```
 
@@ -25,4 +35,4 @@ $ npm run build
 2. Enable Developer Mode by clicking the toggle switch next to `Developer mode`.
 3. Click the `LOAD UNPACKED` button and select the `/public` directory.
 
-![Example](https://developer-chrome-com.imgix.net/image/BrQidfK9jaQyIHwdw91aVpkPiib2/iYdLKFsJ1KSVGLhbLRvS.png?auto=format&w=650)
+![Example](https://wd.imgix.net/image/BhuKGJaIeLNPW9ehns59NfwqKxF2/vOu7iPbaapkALed96rzN.png?auto=format&w=571)

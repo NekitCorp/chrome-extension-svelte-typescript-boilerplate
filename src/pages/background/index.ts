@@ -1,7 +1,7 @@
-import type { IStorage } from "./types";
+import type { IStorage } from "src/types";
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.storage.sync.get({ count: 0 } as IStorage, ({ count }: IStorage) => {
-        console.log(count);
+        console.log("background", count);
     });
 });
