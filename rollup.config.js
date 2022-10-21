@@ -5,7 +5,6 @@ import resolve from "@rollup/plugin-node-resolve";
 import typescript from "@rollup/plugin-typescript";
 import css from "rollup-plugin-css-only";
 import svelte from "rollup-plugin-svelte";
-import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 
 const production = !process.env.ROLLUP_WATCH;
@@ -50,7 +49,9 @@ function createConfig(filename, useSvelte = false) {
 
             // If we're building for production (npm run build
             // instead of npm run dev), minify
-            production && terser(),
+            // `rollup-plugin-terser` do not support rollup 3
+            // https://github.com/TrySound/rollup-plugin-terser/issues/119
+            // production && terser(),
         ],
     };
 }

@@ -6,7 +6,6 @@
     "compilerOptions": {
         "sourceMap": false,
         "isolatedModules": false,
-        "typeRoots": ["node_modules/@types"],
         "types": ["svelte", "chrome"]
     }
 }
