@@ -7,8 +7,8 @@
         "url": "https://github.com/nekitcorp/chrome-extension-svelte-typescript-boilerplate.git"
     },
     "scripts": {
-        "build": "rollup -c",
-        "dev": "rollup -c -w",
+        "build": "rollup -c rollup.config.ts --configPlugin typescript",
+        "dev": "rollup -c rollup.config.ts -w --configPlugin typescript",
         "validate": "svelte-check"
     },
     "devDependencies": {
