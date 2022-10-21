@@ -59,5 +59,5 @@ export default [
     createConfig("options", true),
     createConfig("popup", true),
     createConfig("background"),
-    createConfig("content_script"),
+    createConfig("content_script", true),
 ];

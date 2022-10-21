@@ -12,7 +12,8 @@
     "content_scripts": [
         {
             "matches": ["<all_urls>"],
-            "js": ["build/content_script.js"]
+            "js": ["build/content_script.js"],
+            "css": ["build/content_script.css"]
         }
     ],
     "background": {
