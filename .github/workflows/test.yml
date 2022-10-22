@@ -19,4 +19,4 @@ jobs:
             - run: npm ci
             - run: npm run build
             # Test
-            - run: npm run check
+            - run: npm run validate
