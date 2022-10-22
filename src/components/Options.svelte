@@ -27,6 +27,16 @@
     }
 </script>
 
+<div class="container">
+    <p>Current count: <b>{count}</b></p>
+    <div>
+        <button on:click={decrement}>-</button>
+        <button on:click={increment}>+</button>
+        <button on:click={save}>Save</button>
+        {#if successMessage}<span class="success">{successMessage}</span>{/if}
+    </div>
+</div>
+
 <style>
     .container {
         min-width: 250px;
@@ -52,13 +62,3 @@
         font-weight: bold;
     }
 </style>
-
-<div class="container">
-    <p>Current count: <b>{count}</b></p>
-    <div>
-        <button on:click={decrement}>-</button>
-        <button on:click={increment}>+</button>
-        <button on:click={save}>Save</button>
-        {#if successMessage}<span class="success">{successMessage}</span>{/if}
-    </div>
-</div>

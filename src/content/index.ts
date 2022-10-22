@@ -1,8 +1,5 @@
-import type { IStorage } from "./types";
-import Overlay from "./components/Overlay.svelte";
-
-// Some global styles on the page
-import "./content_script.css";
+import Overlay from "../components/Overlay.svelte";
+import type { IStorage } from "../types";
 
 // Some JS on the page
 chrome.storage.sync.get({ count: 0 } as IStorage, ({ count }: IStorage) => {

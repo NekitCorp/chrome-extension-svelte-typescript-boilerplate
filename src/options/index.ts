@@ -1,5 +1,5 @@
-import Options from "./components/Options.svelte";
-import type { IStorage } from "./types";
+import Options from "../components/Options.svelte";
+import type { IStorage } from "../types";
 
 function restoreOptions() {
     chrome.storage.sync.get({ count: 0 } as IStorage, ({ count }: IStorage) => {

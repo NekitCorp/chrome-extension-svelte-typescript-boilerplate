@@ -1,8 +1,7 @@
 <div class="overlay">
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil itaque
-    exercitationem laboriosam, accusantium doloremque consequatur inventore nisi
-    suscipit? Qui earum eum quo praesentium eligendi in error rerum? Libero,
-    amet id.
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit et, enim
+    repellendus placeat blanditiis, odit pariatur error autem distinctio qui
+    dolorem nesciunt quam recusandae id consequuntur quo quia ab veniam.
 </div>
 
 <style>
