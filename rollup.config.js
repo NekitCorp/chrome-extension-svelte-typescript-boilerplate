@@ -11,6 +11,7 @@ import sveltePreprocess from "svelte-preprocess";
 
 const production = !process.env.ROLLUP_WATCH;
 
+/** @type {import('rollup').RollupOptions} */
 export default {
     input: "src/manifest.json",
     output: {

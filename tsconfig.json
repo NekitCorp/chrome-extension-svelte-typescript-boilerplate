@@ -1,7 +1,7 @@
 {
     "extends": "@tsconfig/svelte/tsconfig.json",
 
-    "include": ["src/**/*", "rollup.config.ts"],
+    "include": ["src/**/*"],
     "exclude": ["node_modules/*", "public/*"],
     "compilerOptions": {
         "sourceMap": false,
