@@ -7,7 +7,7 @@
         "url": "https://github.com/nekitcorp/chrome-extension-svelte-typescript-boilerplate.git"
     },
     "scripts": {
-        "dev": "vite build -w",
+        "dev": "vite",
         "build": "vite build",
         "check": "svelte-check --tsconfig ./tsconfig.json"
     },
