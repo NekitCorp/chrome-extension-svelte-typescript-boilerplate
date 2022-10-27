@@ -1,12 +1,13 @@
 # Svelte Typescript Chrome Extension Boilerplate
 
-Boilerplate for Chrome Extension Svelte Typescript project
+> Boilerplate for Chrome Extension Svelte Typescript project
 
 ## Features
 
 -   [Svelte](https://svelte.dev/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Vite](https://vitejs.dev/)
+-   [CRXJS Vite Plugin](https://github.com/crxjs/chrome-extension-tools/blob/main/packages/vite-plugin/README.md)
 -   [Chrome Extensions Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/)
 
 ## Development
@@ -16,7 +17,7 @@ Boilerplate for Chrome Extension Svelte Typescript project
 npm i
 
 # build files to `/dist` directory
-# vite.build.watch rebuilds when modules have changed on disk
+# HMR for extension pages and content scripts
 npm run dev
 ```
 
