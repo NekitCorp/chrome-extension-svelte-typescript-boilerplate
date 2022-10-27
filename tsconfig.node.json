@@ -3,7 +3,9 @@
     "compilerOptions": {
         "composite": true,
         "module": "esnext",
-        "moduleResolution": "node"
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "allowSyntheticDefaultImports": true
     },
-    "include": ["vite.config.ts"]
+    "include": ["vite.config.ts", "manifest.json"]
 }

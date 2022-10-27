@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { IStorage } from "../types";
+    import { storage } from "../storage";
 
     export let count: number;
     let successMessage: string = null;
@@ -13,11 +13,7 @@
     }
 
     function save() {
-        const storage: IStorage = {
-            count,
-        };
-
-        chrome.storage.sync.set(storage, () => {
+        storage.set({ count }).then(() => {
             successMessage = "Options saved!";
 
             setTimeout(() => {
@@ -26,6 +22,16 @@
         });
     }
 </script>
+
+<div class="container">
+    <p>Current count: <b>{count}</b></p>
+    <div>
+        <button on:click={decrement}>-</button>
+        <button on:click={increment}>+</button>
+        <button on:click={save}>Save</button>
+        {#if successMessage}<span class="success">{successMessage}</span>{/if}
+    </div>
+</div>
 
 <style>
     .container {
@@ -52,13 +58,3 @@
         font-weight: bold;
     }
 </style>
-
-<div class="container">
-    <p>Current count: <b>{count}</b></p>
-    <div>
-        <button on:click={decrement}>-</button>
-        <button on:click={increment}>+</button>
-        <button on:click={save}>Save</button>
-        {#if successMessage}<span class="success">{successMessage}</span>{/if}
-    </div>
-</div>
