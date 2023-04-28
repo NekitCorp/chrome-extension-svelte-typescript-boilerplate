@@ -1,5 +1,5 @@
 import { resetStore } from "src/stores/resetStore";
-import { storage } from "../storage";
+
 import { getElementByXpath, getElementsByXpath } from "../utils/helpers";
 import CommentUI from "../components/CommentUI/CommentUI.svelte";
 import Overlay from "../components/Overlay/Overlay.svelte";
@@ -11,12 +11,11 @@ import "./styles.css";
 
 new Overlay({ target: document.body });
 
-// Some JS on the page
-// storage.get().then(console.log);
-
 const { host } = document.location;
 
-let xPathSelector, xPathTargetSelector, querySelector = '';
+let xPathSelector,
+  xPathTargetSelector,
+  querySelector = "";
 switch (host) {
   case "www.youtube.com":
     xPathSelector = '//*[@id="content-text"]/../..';
@@ -35,8 +34,7 @@ switch (host) {
 // Select the node that will be observed for mutations
 
 // Options for the observer (which mutations to observe)
-const config = { childList: true,
-  subtree: true};
+const config = { childList: true, subtree: true };
 
 let attachedComments = [];
 function attachCommentUI() {
@@ -46,7 +44,8 @@ function attachCommentUI() {
   comments.forEach((comment) => {
     if (attachedComments.includes(comment)) return;
 
-    const textWrapper: HTMLElement = xPathSelector !== xPathTargetSelector
+    const textWrapper: HTMLElement =
+      xPathSelector !== xPathTargetSelector
         ? comment.querySelector(querySelector)
         : comment;
     textWrapper.style.transition = "150ms ease-in-out";
@@ -73,7 +72,8 @@ const observer = new MutationObserver(mutationCallback);
 let commentSectionChecker;
 
 const runObserver = () => {
-  if (host === 'www.youtube.com') { // YouTube causes the document to mutate periodically, even when simply watching a video. Therefore, for YouTube, we need to check exactly the necessary element, and not the entire document for changes.
+  if (host === "www.youtube.com") {
+    // YouTube causes the document to mutate periodically, even when simply watching a video. Therefore, for YouTube, we need to check exactly the necessary element, and not the entire document for changes.
     commentSectionChecker = setInterval(() => {
       const targetNode = getElementByXpath(xPathTargetSelector);
       if (targetNode) {
@@ -84,7 +84,7 @@ const runObserver = () => {
   } else {
     observer.observe(document, config); // Document change check. On new sites, we need to check that the document refresh is called when the user is active or when new elements appear.
   }
-}
+};
 
 function reset() {
   setTimeout(() => {
@@ -102,7 +102,7 @@ function reset() {
 const observeUrlChange = () => {
   let oldHref = document.location.href;
   const body = document.querySelector("body");
-  const observer = new MutationObserver(mutations => {
+  const observer = new MutationObserver((mutations) => {
     mutations.forEach(() => {
       if (oldHref !== document.location.href) {
         oldHref = document.location.href;
@@ -112,7 +112,7 @@ const observeUrlChange = () => {
   });
   observer.observe(body, { childList: true, subtree: true });
 };
-runObserver();// Start observing the target node for configured mutations
-if (host === 'www.youtube.com') {
-  observeUrlChange();// Start observing the href mutations
+runObserver(); // Start observing the target node for configured mutations
+if (host === "www.youtube.com") {
+  observeUrlChange(); // Start observing the href mutations
 }
