@@ -107,13 +107,11 @@ function reset() {
 const observeUrlChange = () => {
   let oldHref = document.location.href;
   const body = document.querySelector("body");
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach(() => {
-      if (oldHref !== document.location.href) {
-        oldHref = document.location.href;
-        reset();
-      }
-    });
+  const observer = new MutationObserver(() => {
+    if (oldHref !== document.location.href) {
+      oldHref = document.location.href;
+      reset();
+    }
   });
   observer.observe(body, { childList: true, subtree: true });
 };

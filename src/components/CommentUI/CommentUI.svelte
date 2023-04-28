@@ -14,11 +14,13 @@
     ? (textWrapper.style.filter = "blur(5px)")
     : (textWrapper.style.filter = "unset");
 
-  // let response = getOpenAiClassification(textContent).then((res) => {
-  //   res.isHarmful ? (isBlurred = true) : (isBlurred = false);
-  //   return res;
-  // });
-  let response = { description: "Harmful content" };
+  let response = null
+
+  $:  getOpenAiClassification(textContent).then((res) => {
+    res.is_harmful == 'Yes' ? (isBlurred = true) : (isBlurred = false);
+    response = res
+    return res
+  })
 
   $: $resetStore === true && selfRef?.parentNode?.removeChild(selfRef); //selfdestruct
 </script>
@@ -27,23 +29,27 @@
   <div
     class="tooltip-icon-wrapper"
     on:mouseenter={() => {
-      console.log("mouseenter");
-      $commentTooltipStore.isShowing = true;
+      if(response){
+        $commentTooltipStore.isShowing = true;
+        $commentTooltipStore.reason = response?.category.join(', ');
+        $commentTooltipStore.explanation = response?.description;
+      }
     }}
     on:mouseleave={() => {
-      console.log("mouseleave");
       $commentTooltipStore.isShowing = false;
+      $commentTooltipStore.reason = "";
+      $commentTooltipStore.explanation = "";
     }}
   >
     <TooltipIcon />
   </div>
-  {#await response}
+  {#if response == null}
     <p>Loading...</p>
-  {:then value}
-    <p>{value.description}</p>
-  {:catch error}
-    <p>{error.message}</p>
-  {/await}
+  {:else if response.description}
+    <p>{response.description}</p>
+  {:else}
+    <p>{"Something went wrong."}</p>
+  {/if}
   <button
     on:click={() => {
       isBlurred = !isBlurred;
