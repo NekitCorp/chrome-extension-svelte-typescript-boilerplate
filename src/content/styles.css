@@ -1,3 +1,22 @@
-body {
-    /* background: rgba(232, 240, 254, 0.4) !important; */
+@media (prefers-color-scheme: light) {
+
+    /* commentUI */
+    :root {
+        --gla33wall-comment-ui-bg: rgba(255, 255, 255, 0.2);
+        --gla33wall-comment-ui-color: black;
+        --gla33wall-comment-tooltip-border: 1px solid rgba(0, 0, 0, 0.1);
+
+    }
+
+}
+
+@media (prefers-color-scheme: dark) {
+
+    /* commentUI */
+    :root {
+        --gla33wall-comment-ui-bg: rgba(0, 0, 0, 0.2);
+        --gla33wall-comment-ui-color: white;
+        --gla33wall-comment-tooltip-border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
 }

@@ -18,20 +18,18 @@
     width: 260px;
     bottom: 10px;
     right: 8px;
-    background: linear-gradient(
+    /* background: linear-gradient(
       109.93deg,
       rgba(60, 215, 187, 0.32) -2.26%,
       rgba(116, 8, 223, 0.3) 114.4%
-    );
+    ); */
     backdrop-filter: blur(10px);
     padding: 12px;
     border-radius: 10px 10px 0 10px;
     height: fit-content;
     z-index: 9999;
-    color: white;
-
-    /* experimental styles */
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: rgba(0, 0, 0, 0.2);
+    border: var(--gla33wall-comment-tooltip-border);
+    background: var(--gla33wall-comment-ui-bg);
+    color: var(--gla33wall-comment-ui-color);
   }
 </style>

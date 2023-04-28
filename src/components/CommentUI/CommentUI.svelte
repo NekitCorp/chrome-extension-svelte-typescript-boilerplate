@@ -20,8 +20,6 @@
   let response = { description: "Harmful content" };
 
   $: $resetStore === true && selfRef?.parentNode?.removeChild(selfRef); //selfdestruct
-
-  $: console.log($commentTooltipStore);
 </script>
 
 <div bind:this={selfRef} class="main-wrapper">
@@ -59,7 +57,7 @@
     width: 100%;
     display: flex;
     justify-content: flex-end;
-    color: white;
+    color: var(--gla33wall-comment-ui-color);
     align-items: center;
     gap: 10px;
     padding-top: 8px;
@@ -68,8 +66,8 @@
     all: unset;
     box-sizing: border-box;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 1px solid white;
+    background: var(--gla33wall-comment-ui-bg);
+    border: 1px solid var(--gla33wall-comment-ui-color);
     border-radius: 8px;
     font-size: 12px;
     width: 50px;
