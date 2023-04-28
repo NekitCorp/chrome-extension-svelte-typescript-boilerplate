@@ -46,7 +46,7 @@
   {#if response == null}
     <p>Loading...</p>
   {:else if response.description}
-    <p>{response.description}</p>
+    <p>{response?.emoji || ""}</p>
   {:else}
     <p>{"Something went wrong."}</p>
   {/if}
