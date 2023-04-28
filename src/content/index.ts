@@ -27,6 +27,11 @@ switch (host) {
     xPathTargetSelector = "//*[@data-testid='tweetText']";
     querySelector = "[data-testid='tweetText']";
     break;
+  case "www.facebook.com":
+    xPathSelector = "//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div/div/div[last()]/span/..|//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div[last()]/span/..";
+    xPathTargetSelector = "//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div/div/div[last()]|//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div[last()]";
+    querySelector = 'span'
+    break;
   default:
     break;
 }
