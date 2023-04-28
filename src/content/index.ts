@@ -1,4 +1,4 @@
-import CommentUI from "../components/CommentUI.svelte";
+import CommentUI from "../components/CommentUI/CommentUI.svelte";
 import { resetStore } from "src/stores/resetStore";
 import { storage } from "../storage";
 
@@ -63,6 +63,8 @@ function attachCommentUI() {
     if (attachedComments.includes(comment)) return;
     const textWrapper: HTMLElement = comment.querySelector("#content-text");
     textWrapper.style.transition = "150ms ease-in-out";
+    // const expander: HTMLElement = comment.querySelector("#expander");
+    // expander.style.overflow = "unset";
     new CommentUI({
       target: comment,
       props: {

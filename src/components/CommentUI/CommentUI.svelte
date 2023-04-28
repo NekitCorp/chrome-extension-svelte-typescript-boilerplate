@@ -1,6 +1,8 @@
 <script>
   import { getOpenAiClassification } from "src/content";
   import { resetStore } from "src/stores/resetStore";
+  import TooltipIcon from "src/assets/icons/icons/TooltipIcon.svelte";
+  import CommentTooltip from "./CommentTooltip.svelte";
 
   export let textWrapper;
 
@@ -34,6 +36,10 @@
     class="test-class"
     >{isBlurred ? "Show" : "Hide"}
   </button>
+  <div class="tooltip-icon-wrapper">
+    <CommentTooltip />
+    <TooltipIcon />
+  </div>
 </div>
 
 <style>
@@ -58,5 +64,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .tooltip-icon-wrapper {
+    width: 10px;
+    height: 10px;
+    position: relative;
   }
 </style>
