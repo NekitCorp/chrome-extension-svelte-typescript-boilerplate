@@ -1,7 +1,7 @@
 {
   "name": "True AI",
   "description": "True Nation's standalone moderation tool to help keep the internet manageable and abuse away from you.",
-  "version": "1.0",
+  "version": "3.0.1",
   "author": "True Nation",
   "manifest_version": 3,
   "icons": {
@@ -17,5 +17,5 @@
     }
   ],
 
-  "permissions": ["storage"]
+  "permissions": []
 }
