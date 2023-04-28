@@ -26,14 +26,13 @@
 </script>
 
 <div bind:this={selfRef} class="main-wrapper">
+  {#if response?.description && response?.category && response.category != 'None' && response.description != 'None' }
   <div
     class="tooltip-icon-wrapper"
     on:mouseenter={() => {
-      if(response){
         $commentTooltipStore.isShowing = true;
-        $commentTooltipStore.reason = response?.category.join(', ');
+        $commentTooltipStore.reason = response?.category;
         $commentTooltipStore.explanation = response?.description;
-      }
     }}
     on:mouseleave={() => {
       $commentTooltipStore.isShowing = false;
@@ -43,10 +42,11 @@
   >
     <TooltipIcon />
   </div>
+  {/if}
   {#if response == null}
     <p>Loading...</p>
-  {:else if response.description}
-    <p>{response?.emoji || ""}</p>
+  {:else if response  }
+    <p>{response?.emoji || '' }</p>
   {:else}
     <p>{"Something went wrong."}</p>
   {/if}
