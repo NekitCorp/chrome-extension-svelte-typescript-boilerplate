@@ -94,9 +94,7 @@ function reset() {
 
     setTimeout(() => {
       resetStore.set(false);
-      const targetNode = getElementByXpath(xPathTargetSelector);
-      observer.observe(targetNode, config);
-      clearInterval(commentSectionChecker);
+      runObserver();
     }, 0);
   }, 0); //timeouts as a hack to make sure the reset is done after the commentUI is removed
 }
