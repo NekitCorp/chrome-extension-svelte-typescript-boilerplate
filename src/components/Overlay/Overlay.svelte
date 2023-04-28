@@ -33,6 +33,7 @@
     position: fixed;
     height: 100vh;
     width: 100vw;
+    z-index: 9998;
     pointer-events: none;
   }
 </style>
