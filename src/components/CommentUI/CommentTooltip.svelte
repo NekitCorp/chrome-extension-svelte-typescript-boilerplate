@@ -1,19 +1,22 @@
 <script lang="ts">
-  let reason = "Harmful";
-  let explanation = "This comment has been flagged as harmful by our AI";
+  import { commentTooltipStore } from "src/stores/commentTooltipStore";
+  export let top: number = 0;
+  export let left: number = 0;
 </script>
 
-<div class="comment-tooltip">
-  <b>{reason}</b>
-  &nbsp;
-  <span>{explanation}</span>
+<div
+  class="comment-tooltip"
+  style={`top: ${top - 60}px; left: ${left - 290}px`}
+>
+  <b>{$commentTooltipStore.reason}</b>
+  <span>{$commentTooltipStore.explanation}</span>
 </div>
 
 <style>
   .comment-tooltip {
-    position: absolute;
-    min-width: 260px;
-    bottom: 20px;
+    position: fixed;
+    width: 260px;
+    bottom: 10px;
     right: 8px;
     background: linear-gradient(
       109.93deg,
@@ -23,5 +26,12 @@
     backdrop-filter: blur(10px);
     padding: 12px;
     border-radius: 10px 10px 0 10px;
+    height: fit-content;
+    z-index: 9999;
+    color: white;
+
+    /* experimental styles */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(0, 0, 0, 0.2);
   }
 </style>

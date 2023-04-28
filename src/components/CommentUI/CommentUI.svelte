@@ -1,27 +1,43 @@
-<script>
+<script lang="ts">
   import { getOpenAiClassification } from "src/content";
   import { resetStore } from "src/stores/resetStore";
   import TooltipIcon from "src/assets/icons/icons/TooltipIcon.svelte";
-  import CommentTooltip from "./CommentTooltip.svelte";
+  import { commentTooltipStore } from "src/stores/commentTooltipStore";
 
   export let textWrapper;
 
-  let self;
+  let selfRef: HTMLElement;
   let isBlurred = true;
 
   $: isBlurred
     ? (textWrapper.style.filter = "blur(5px)")
     : (textWrapper.style.filter = "unset");
 
-  let response = getOpenAiClassification("test").then((res) => {
-    res.isHarmful ? (isBlurred = true) : (isBlurred = false);
-    return res;
-  });
+  // let response = getOpenAiClassification("test").then((res) => {
+  //   res.isHarmful ? (isBlurred = true) : (isBlurred = false);
+  //   return res;
+  // });
+  let response = { description: "Harmful content" };
 
-  $: $resetStore === true && self?.parentNode?.removeChild(self); //selfdestruct
+  $: $resetStore === true && selfRef?.parentNode?.removeChild(selfRef); //selfdestruct
+
+  $: console.log($commentTooltipStore);
 </script>
 
-<div bind:this={self} class="main-wrapper">
+<div bind:this={selfRef} class="main-wrapper">
+  <div
+    class="tooltip-icon-wrapper"
+    on:mouseenter={() => {
+      console.log("mouseenter");
+      $commentTooltipStore.isShowing = true;
+    }}
+    on:mouseleave={() => {
+      console.log("mouseleave");
+      $commentTooltipStore.isShowing = false;
+    }}
+  >
+    <TooltipIcon />
+  </div>
   {#await response}
     <p>Loading...</p>
   {:then value}
@@ -36,13 +52,9 @@
     class="test-class"
     >{isBlurred ? "Show" : "Hide"}
   </button>
-  <div class="tooltip-icon-wrapper">
-    <CommentTooltip />
-    <TooltipIcon />
-  </div>
 </div>
 
-<style>
+<style lang="scss">
   .main-wrapper {
     width: 100%;
     display: flex;
@@ -50,6 +62,7 @@
     color: white;
     align-items: center;
     gap: 10px;
+    padding-top: 8px;
   }
   button {
     all: unset;
@@ -60,7 +73,7 @@
     border-radius: 8px;
     font-size: 12px;
     width: 50px;
-    height: 30px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -70,5 +83,12 @@
     width: 10px;
     height: 10px;
     position: relative;
+    transition: 100ms;
+
+    @media (hover: hover) {
+      &:hover {
+        scale: 1.4;
+      }
+    }
   }
 </style>

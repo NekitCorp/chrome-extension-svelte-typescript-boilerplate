@@ -1,9 +1,14 @@
 import CommentUI from "../components/CommentUI/CommentUI.svelte";
 import { resetStore } from "src/stores/resetStore";
 import { storage } from "../storage";
+import Overlay from "../components/Overlay/Overlay.svelte";
 
 // Some global styles on the page
 import "./styles.css";
+
+//set overlay
+
+new Overlay({ target: document.body });
 
 // Some JS on the page
 storage.get().then(console.log);
