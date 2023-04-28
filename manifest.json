@@ -1,7 +1,8 @@
 {
-    "name": "svelte-ts-extension-boilerplate",
-    "description": "Boilerplate for Chrome Extension Svelte Typescript project",
+    "name": "True AI",
+    "description": "True Nation's standalone moderation tool to help keep the internet manageable and abuse away from you.",
     "version": "1.0",
+    "author": "True Nation",
     "manifest_version": 3,
     "icons": {
         "16": "src/assets/icons/get_started16.png",
@@ -11,13 +12,10 @@
     },
     "content_scripts": [
         {
-            "matches": ["https://*/*"],
+            "matches": ["https://www.youtube.com/*", "https://twitter.com/*"],
             "js": ["src/content/index.ts"]
         }
     ],
-    "background": {
-        "service_worker": "src/background/index.ts"
-    },
     "options_ui": {
         "page": "src/options/options.html",
         "open_in_tab": false
