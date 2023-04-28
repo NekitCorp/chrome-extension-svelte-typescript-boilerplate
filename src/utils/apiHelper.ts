@@ -6,6 +6,6 @@ export const getOpenAiClassification = (comment: string) =>
         "Content-Type": "application/json",
       },
       method: "POST",
-      body: JSON.stringify({ comments: comment }),
+      body: JSON.stringify({ comment: comment }),
     }
   ).then((res) => res.json());
