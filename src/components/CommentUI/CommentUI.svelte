@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getOpenAiClassification } from "src/content";
+  import { getOpenAiClassification } from "src/utils/apiHelper";
   import { resetStore } from "src/stores/resetStore";
   import TooltipIcon from "src/assets/icons/icons/TooltipIcon.svelte";
   import { commentTooltipStore } from "src/stores/commentTooltipStore";
@@ -8,12 +8,13 @@
 
   let selfRef: HTMLElement;
   let isBlurred = true;
+  const textContent = textWrapper?.textContent;
 
   $: isBlurred
     ? (textWrapper.style.filter = "blur(5px)")
     : (textWrapper.style.filter = "unset");
 
-  // let response = getOpenAiClassification("test").then((res) => {
+  // let response = getOpenAiClassification(textContent).then((res) => {
   //   res.isHarmful ? (isBlurred = true) : (isBlurred = false);
   //   return res;
   // });
@@ -78,6 +79,7 @@
   }
 
   .tooltip-icon-wrapper {
+    font-size: 10px;
     width: 10px;
     height: 10px;
     position: relative;
