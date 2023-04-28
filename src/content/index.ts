@@ -30,7 +30,12 @@ switch (host) {
   case "www.facebook.com":
     xPathSelector = "//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div/div/div[last()]/span/..|//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div[last()]/span/..";
     xPathTargetSelector = "//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div/div/div[last()]|//ul/li/div[@role='article']/div[2]/div[1]/div[1]/div/div[1]/div[last()]";
-    querySelector = 'span'
+    querySelector = 'span';
+    break;
+  case "www.tiktok.com":
+    xPathSelector = "//p[starts-with(@data-e2e, 'comment-level')]/..";
+    xPathTargetSelector = "//p[starts-with(@data-e2e, 'comment-level')]";
+    querySelector = "p";
     break;
   default:
     break;
