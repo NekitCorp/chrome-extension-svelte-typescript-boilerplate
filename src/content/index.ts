@@ -37,6 +37,11 @@ switch (host) {
     xPathTargetSelector = "//p[starts-with(@data-e2e, 'comment-level')]";
     querySelector = "p";
     break;
+  case "www.linkedin.com":
+    xPathSelector = "//span[contains(@class, 'comments-comment-item__main-content')]/../..";
+    xPathTargetSelector = "//span[contains(@class, 'comments-comment-item__main-content')]";
+    querySelector = "span";
+    break;
   default:
     break;
 }
