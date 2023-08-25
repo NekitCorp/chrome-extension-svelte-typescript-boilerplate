@@ -12,7 +12,7 @@
         "check": "svelte-check --tsconfig ./tsconfig.json"
     },
     "devDependencies": {
-        "@crxjs/vite-plugin": "2.0.0-beta.3",
+        "@crxjs/vite-plugin": "2.0.0-beta.18",
         "@sveltejs/vite-plugin-svelte": "1.1.0",
         "@tsconfig/svelte": "3.0.0",
         "@types/chrome": "0.0.200",
