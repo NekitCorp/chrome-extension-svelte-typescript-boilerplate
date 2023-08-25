@@ -11,12 +11,12 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v3
-            - name: Use Node.js
-              uses: actions/setup-node@v3
+            - uses: actions/setup-node@v3
               with:
-                  node-version: "16.x"
-            # Build
+                  node-version: 18
+            # Install dependencies
             - run: npm ci
+            # Build
             - run: npm run build
             # Test
             - run: npm run check

@@ -1,12 +1,20 @@
-import Options from "src/components/Options.svelte";
-import { storage } from "src/storage";
+import Options from "../components/Options.svelte";
+import { storage } from "../storage";
 
-const target = document.getElementById("app");
+// Side panel
+// https://developer.chrome.com/docs/extensions/reference/sidePanel/
 
 function render() {
-    storage.get().then(({ count }) => {
-        new Options({ target, props: { count } });
-    });
+    const target = document.getElementById("app");
+
+    if (target) {
+        storage.get().then(({ count }) => {
+            new Options({
+                target,
+                props: { count },
+            });
+        });
+    }
 }
 
 document.addEventListener("DOMContentLoaded", render);
