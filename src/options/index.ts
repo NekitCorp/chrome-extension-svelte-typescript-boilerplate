@@ -1,5 +1,6 @@
 import Options from "../components/Options.svelte";
 import { storage } from "../storage";
+import "../tailwind.css";
 
 // Options
 // https://developer.chrome.com/docs/extensions/mv3/options/

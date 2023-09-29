@@ -1,5 +1,6 @@
 import Options from "../components/Options.svelte";
 import { storage } from "../storage";
+import "../tailwind.css";
 
 // Side panel
 // https://developer.chrome.com/docs/extensions/reference/sidePanel/

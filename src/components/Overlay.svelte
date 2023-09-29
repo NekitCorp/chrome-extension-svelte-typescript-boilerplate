@@ -10,18 +10,6 @@
     });
 </script>
 
-<div class="overlay">
+<div class="fixed w-80 top-4 left-4 bg-white border border-indigo-600 p-4">
     <Options {count} />
 </div>
-
-<style>
-    .overlay {
-        position: fixed;
-        width: 300px;
-        top: 16px;
-        left: 16px;
-        background-color: white;
-        border: 1px solid black;
-        padding: 16px;
-    }
-</style>
