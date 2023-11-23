@@ -10,6 +10,10 @@
 -   [CRXJS Vite Plugin](https://github.com/crxjs/chrome-extension-tools/blob/main/packages/vite-plugin/README.md)
 -   [Chrome Extensions Manifest V3](https://developer.chrome.com/docs/extensions/mv3/intro/)
 
+## Examples of integrations
+
+-   [Tailwind CSS](https://tailwindcss.com/) – is in the [tailwindcss](https://github.com/NekitCorp/chrome-extension-svelte-typescript-boilerplate/tree/tailwindcss) branch
+
 ## Development
 
 ```bash
