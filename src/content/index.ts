@@ -1,4 +1,4 @@
-import Overlay from "../components/Overlay.svelte";
+import InjectWithStaticDeclarations from "../components/InjectWithStaticDeclarations.svelte";
 import { storage } from "../storage";
 
 // Content scripts
@@ -8,7 +8,7 @@ import { storage } from "../storage";
 import "./styles.css";
 
 // Some JS on the page
-storage.get().then(console.log);
+storage.get().then((value) => console.log("Inject with static declarations", value));
 
 // Some svelte component on the page
-new Overlay({ target: document.body });
+new InjectWithStaticDeclarations({ target: document.body });

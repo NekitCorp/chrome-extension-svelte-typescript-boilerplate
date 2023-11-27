@@ -39,13 +39,12 @@ export default defineManifest(async (env) => ({
         default_path: "src/sidepanel/sidepanel.html",
     },
     action: {
-        default_popup: "src/popup/popup.html",
-        default_icon: {
-            "16": "src/assets/icons/icon-16.png",
-            "32": "src/assets/icons/icon-32.png",
-            "48": "src/assets/icons/icon-48.png",
-            "128": "src/assets/icons/icon-128.png",
-        },
+        default_title: "click me",
     },
-    permissions: ["storage", "sidePanel"] as chrome.runtime.ManifestPermissions[],
+    permissions: [
+        "storage",
+        "sidePanel",
+        "activeTab",
+        "scripting",
+    ] as chrome.runtime.ManifestPermissions[],
 }));

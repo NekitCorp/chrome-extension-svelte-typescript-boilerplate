@@ -5,7 +5,7 @@ import manifest from "./src/manifest.config";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [svelte(), crx({ manifest })],
+    plugins: [svelte({ emitCss: false }), crx({ manifest })],
     // HACK: https://github.com/crxjs/chrome-extension-tools/issues/696
     // https://github.com/crxjs/chrome-extension-tools/issues/746
     server: {
