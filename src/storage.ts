@@ -9,36 +9,45 @@ import { writable, type Writable } from 'svelte/store';
  */
 export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
     const store = writable(initialValue);
-    let isUpdatingFromChrome = false;
-    let isUpdatingFromStore = false;
+    let storeValues: T[] = [];
+    let chromeValues: T[] = [];
 
     function watchStore() {
         store.subscribe((value) => {
             // Prevent circular updates
-            if (isUpdatingFromChrome) return;
-            isUpdatingFromStore = true;
-            chrome.storage.sync.set({ [key]: value }).then(() => {
-                isUpdatingFromStore = false;
-            });
+            if (chromeValues && value === chromeValues[0]) {
+                chromeValues.shift();
+                return;
+            }
+
+            storeValues.push(value);
+            chrome.storage.sync.set({ [key]: value });
         });
     }
 
     function watchChrome() {
-        chrome.storage.onChanged.addListener((changes, namespace) => {
-            // Prevent circular updates
-            if (isUpdatingFromStore || namespace !== 'sync' || !(Object.hasOwn(changes, key))) return;
-            isUpdatingFromChrome = true;
-            store.set(changes[key].newValue);
-            isUpdatingFromChrome = false;
+        chrome.storage.sync.onChanged.addListener((changes) => {
+            if (!(Object.hasOwn(changes, key))) return;
+
+            const value = changes[key].newValue as T;
+            console.log(`watchChrome got ${value}`);
+            if (storeValues && value === storeValues[0]) {
+                storeValues.shift();
+                return;
+            }
+
+            chromeValues.push(value);
+            store.set(value);
         });
     }
 
     // Initialize the store with the value from Chrome storage
     chrome.storage.sync.get(key).then((result) => {
         let value = Object.hasOwn(result, key) ? result[key] : initialValue;
-        if (!(Object.hasOwn(result, key))) {
+        if (!Object.hasOwn(result, key)) {
             console.log(`Persistent store: couldn't find key [${key}] in chrome storage. Default to initial value [${initialValue}]`)
         }
+        chromeValues.push(value);
         store.set(value);
         watchStore();
         watchChrome();
