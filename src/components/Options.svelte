@@ -1,35 +1,19 @@
 <script lang="ts">
-    import { storage } from "../storage";
+    import { onMount } from "svelte";
+    import { type Writable } from "svelte/store";
 
-    export let count: number;
-    let successMessage: string | null = null;
+    export let count: Writable<number>;
 
-    function increment() {
-        count += 1;
-    }
-
-    function decrement() {
-        count -= 1;
-    }
-
-    function save() {
-        storage.set({ count }).then(() => {
-            successMessage = "Options saved!";
-
-            setTimeout(() => {
-                successMessage = null;
-            }, 1500);
-        });
-    }
+    onMount(() => {
+        console.log(`Options onMount count=${$count}`);
+    });
 </script>
 
 <div class="container">
-    <p>Current count: <b>{count}</b></p>
+    <p>Current count: <b>{$count}</b></p>
     <div>
-        <button on:click={decrement}>-</button>
-        <button on:click={increment}>+</button>
-        <button on:click={save}>Save</button>
-        {#if successMessage}<span class="success">{successMessage}</span>{/if}
+        <button on:click={() => ($count -= 1)}>-</button>
+        <button on:click={() => ($count += 1)}>+</button>
     </div>
 </div>
 
@@ -51,10 +35,5 @@
     button:hover,
     button:focus {
         background-color: #27ae60;
-    }
-
-    .success {
-        color: #2ecc71;
-        font-weight: bold;
     }
 </style>

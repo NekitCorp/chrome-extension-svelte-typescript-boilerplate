@@ -1,10 +1,11 @@
-import { storage } from "../storage";
+import { get } from "svelte/store";
+import { count } from "../storage";
 
 // Background service workers
 // https://developer.chrome.com/docs/extensions/mv3/service_workers/
 
 chrome.runtime.onInstalled.addListener(() => {
-    storage.get().then(console.log);
+    console.log(get(count));
 });
 
 // NOTE: If you want to toggle the side panel from the extension's action button,
