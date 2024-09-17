@@ -9,18 +9,18 @@ import { writable, type Writable } from 'svelte/store';
  */
 export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
     const store = writable(initialValue);
-    let storeValues: T[] = [];
-    let chromeValues: T[] = [];
+    // Ensure each value is updated exactly once in store and in chrome storage
+    let storeValueQueue: T[] = [];
+    let chromeValueQueue: T[] = [];
 
     function watchStore() {
         store.subscribe((value) => {
-            // Prevent circular updates
-            if (chromeValues.length > 0 && value === chromeValues[0]) {
-                chromeValues.shift();
+            if (chromeValueQueue.length > 0 && value === chromeValueQueue[0]) {
+                chromeValueQueue.shift();
                 return;
             }
 
-            storeValues.push(value);
+            storeValueQueue.push(value);
             chrome.storage.sync.set({ [key]: value });
         });
     }
@@ -30,12 +30,12 @@ export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
             if (!(Object.hasOwn(changes, key))) return;
 
             const value = changes[key].newValue as T;
-            if (storeValues.length > 0 && value === storeValues[0]) {
-                storeValues.shift();
+            if (storeValueQueue.length > 0 && value === storeValueQueue[0]) {
+                storeValueQueue.shift();
                 return;
             }
 
-            chromeValues.push(value);
+            chromeValueQueue.push(value);
             store.set(value);
         });
     }
@@ -46,7 +46,7 @@ export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
         if (!Object.hasOwn(result, key)) {
             console.log(`Persistent store: couldn't find key [${key}] in chrome storage. Default to initial value [${initialValue}]`)
         }
-        chromeValues.push(value);
+        chromeValueQueue.push(value);
         store.set(value);
         watchStore();
         watchChrome();
