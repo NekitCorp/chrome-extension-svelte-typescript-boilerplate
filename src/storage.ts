@@ -30,7 +30,6 @@ export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
             if (!(Object.hasOwn(changes, key))) return;
 
             const value = changes[key].newValue as T;
-            console.log(`watchChrome got ${value}`);
             if (storeValues && value === storeValues[0]) {
                 storeValues.shift();
                 return;
