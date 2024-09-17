@@ -15,7 +15,7 @@ export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
     function watchStore() {
         store.subscribe((value) => {
             // Prevent circular updates
-            if (chromeValues && value === chromeValues[0]) {
+            if (chromeValues.length > 0 && value === chromeValues[0]) {
                 chromeValues.shift();
                 return;
             }
@@ -30,7 +30,7 @@ export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
             if (!(Object.hasOwn(changes, key))) return;
 
             const value = changes[key].newValue as T;
-            if (storeValues && value === storeValues[0]) {
+            if (storeValues.length > 0 && value === storeValues[0]) {
                 storeValues.shift();
                 return;
             }
