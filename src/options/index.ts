@@ -1,5 +1,6 @@
+import { mount } from "svelte";
 import Options from "../components/Options.svelte";
-import { storage } from "../storage";
+import { count } from "../storage";
 import "../tailwind.css";
 
 // Options
@@ -9,12 +10,7 @@ function render() {
     const target = document.getElementById("app");
 
     if (target) {
-        storage.get().then(({ count }) => {
-            new Options({
-                target,
-                props: { count },
-            });
-        });
+        mount(Options, { target, props: { count } });
     }
 }
 
