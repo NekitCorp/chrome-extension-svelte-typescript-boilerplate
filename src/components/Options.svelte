@@ -1,19 +1,18 @@
 <script lang="ts">
-    import { onMount } from "svelte";
     import { type Writable } from "svelte/store";
 
-    export let count: Writable<number>;
+    interface Props {
+        count: Writable<number>;
+    }
 
-    onMount(() => {
-        console.log(`Options onMount count=${$count}`);
-    });
+    let { count }: Props = $props();
 </script>
 
 <div class="container">
     <p>Current count: <b>{$count}</b></p>
     <div>
-        <button on:click={() => ($count -= 1)}>-</button>
-        <button on:click={() => ($count += 1)}>+</button>
+        <button onclick={() => ($count -= 1)}>-</button>
+        <button onclick={() => ($count += 1)}>+</button>
     </div>
 </div>
 

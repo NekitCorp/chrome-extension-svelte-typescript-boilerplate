@@ -1,3 +1,4 @@
+import { mount } from "svelte";
 import Options from "../components/Options.svelte";
 import { count } from "../storage";
 
@@ -8,10 +9,7 @@ function render() {
     const target = document.getElementById("app");
 
     if (target) {
-        new Options({
-            target,
-            props: { count },
-        });
+        mount(Options, { target, props: { count } });
     }
 }
 

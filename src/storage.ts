@@ -1,4 +1,4 @@
-import { writable, type Writable } from 'svelte/store';
+import { writable, type Writable } from "svelte/store";
 
 /**
  * Creates a persistent Svelte store backed by Chrome's sync storage.
@@ -27,7 +27,7 @@ export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
 
     function watchChrome() {
         chrome.storage.sync.onChanged.addListener((changes) => {
-            if (!(Object.hasOwn(changes, key))) return;
+            if (!Object.hasOwn(changes, key)) return;
 
             const value = changes[key].newValue as T;
             if (storeValueQueue.length > 0 && value === storeValueQueue[0]) {
@@ -42,10 +42,7 @@ export function persistentStore<T>(key: string, initialValue: T): Writable<T> {
 
     // Initialize the store with the value from Chrome storage
     chrome.storage.sync.get(key).then((result) => {
-        let value = Object.hasOwn(result, key) ? result[key] : initialValue;
-        if (!Object.hasOwn(result, key)) {
-            console.log(`Persistent store: couldn't find key [${key}] in chrome storage. Default to initial value [${initialValue}]`)
-        }
+        const value = Object.hasOwn(result, key) ? result[key] : initialValue;
         chromeValueQueue.push(value);
         store.set(value);
         watchStore();

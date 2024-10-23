@@ -13,8 +13,10 @@
          */
         "allowJs": true,
         "checkJs": true,
-        "isolatedModules": true
+        "isolatedModules": true,
+        "moduleDetection": "force"
     },
-    "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+    "include": ["src/**/*.ts", "src/**/*.js", "src/**/*.svelte"],
+    // https://github.com/vitejs/vite/issues/18139
     "references": [{ "path": "./tsconfig.node.json" }]
 }

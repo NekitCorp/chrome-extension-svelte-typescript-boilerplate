@@ -1,4 +1,4 @@
-import { get } from "svelte/store";
+import { mount } from "svelte";
 import Overlay from "../components/Overlay.svelte";
 import { count } from "../storage";
 
@@ -9,7 +9,7 @@ import { count } from "../storage";
 import "./styles.css";
 
 // Some JS on the page
-console.log(`CONTENT: ${get(count)}`);
+count.subscribe(console.log);
 
 // Some svelte component on the page
-new Overlay({ target: document.body });
+mount(Overlay, { target: document.body });
