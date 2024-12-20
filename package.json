@@ -18,7 +18,7 @@
         "@tsconfig/svelte": "5.0.4",
         "@types/chrome": "0.0.279",
         "svelte": "5.0.5",
-        "svelte-check": "4.0.5",
+        "svelte-check": "4.1.1",
         "tslib": "2.8.0",
         "typescript": "5.6.3",
         "vite": "5.4.10"
