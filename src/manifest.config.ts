@@ -10,7 +10,7 @@ const [major, minor, patch] = version
     // split into version parts
     .split(/[.-]/);
 
-export default defineManifest(async (env) => ({
+export default defineManifest(async () => ({
     manifest_version: 3,
     name: name,
     description: description,
